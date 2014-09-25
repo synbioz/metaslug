@@ -1,0 +1,44 @@
+en:
+  default:
+    description: "Default description"
+    title: "Default title"
+  "/posts":
+    description: ""
+    title: ""
+  "/posts/new":
+    description: ""
+    title: ""
+  "/posts/:id/edit":
+    description: ""
+    title: ""
+  "/posts/:id":
+    description: ""
+    title: ""
+  "/categories/:category_id/posts":
+    description: ""
+    title: ""
+  "/categories/:category_id/posts/new":
+    description: ""
+    title: ""
+  "/categories/:category_id/posts/:id/edit":
+    description: ""
+    title: ""
+  "/categories/:category_id/posts/:id":
+    description: ""
+    title: ""
+  "/categories":
+    description: "List of categories"
+    title: "Categories"
+    keywords: "categories, test"
+  "/categories/new":
+    description: ""
+    title: ""
+  "/categories/:id/edit":
+    description: ""
+    title: "Edit this category"
+  "/categories/:id":
+    description: ""
+    title: ""
+  "/awesome-page":
+    description: ""
+    title: "Really awesome"

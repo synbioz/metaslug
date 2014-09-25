@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+home:
+  name: First page
+  content: This page looks very nice.
+  slug: awesome-page
+
+without_metas:
+  name: "Without metas"
+  content: This page should have default metas
+  slug: without-metas

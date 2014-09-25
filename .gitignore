@@ -1,0 +1,12 @@
+.bundle/
+.config
+.yardoc
+log/*.log
+pkg/
+test/dummy/db/*.sqlite3
+test/dummy/db/*.sqlite3-journal
+test/dummy/log/*.log
+test/dummy/tmp/
+test/dummy/.sass-cache
+test/dummy/config/database.yml
+test/dummy/config/secrets.yml

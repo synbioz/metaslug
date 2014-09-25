@@ -1,0 +1,41 @@
+fr:
+  "/posts":
+    description: ""
+    title: ""
+  "/posts/new":
+    description: ""
+    title: ""
+  "/posts/:id/edit":
+    description: ""
+    title: ""
+  "/posts/:id":
+    description: ""
+    title: ""
+  "/categories/:category_id/posts":
+    description: ""
+    title: ""
+  "/categories/:category_id/posts/new":
+    description: ""
+    title: ""
+  "/categories/:category_id/posts/:id/edit":
+    description: ""
+    title: ""
+  "/categories/:category_id/posts/:id":
+    description: ""
+    title: ""
+  "/categories":
+    description: "Liste des catégories"
+    title: "Catégories"
+    keywords: "catégories, test"
+  "/categories/new":
+    description: ""
+    title: ""
+  "/categories/:id/edit":
+    description: ""
+    title: "Modifier cette catégorie"
+  "/categories/:id":
+    description: ""
+    title: ""
+  "/awesome-page":
+    description: ""
+    title: "Super page"
