@@ -13,6 +13,8 @@ BANNER
 
       # TODO: clean this code part and respect locale if passed
       def generate_locale_file
+        empty_directory "config/metaslug"
+
         routes = Rails.application.routes.routes.map do |route|
           path = route.path.spec.to_s
           # only keep GET url
