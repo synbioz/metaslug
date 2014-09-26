@@ -42,8 +42,12 @@ The best way to avoid this is to use `prepend_before_filter` to ensure your filt
 
 ## Roadmap
 
+This is what we planned to add next:
+
 - Create `config/metaslug` directory automatically
 - Manage more complicated metas
 - Ability to add dymamic content in metas
 - Finalize generator (install, locale…)
 - Add default translation in generator
+- Different storage (database, cache…)
+- Web interface to edit metas from the app
