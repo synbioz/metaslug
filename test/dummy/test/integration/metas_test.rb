@@ -57,4 +57,19 @@ class MetasTest < ActionDispatch::IntegrationTest
     visit "/without-metas?locale=fr"
     assert_title ""
   end
+
+  test "dynamic title should be set" do
+    visit post_path(posts(:phone))
+    assert_title "Phone article"
+  end
+
+  test "dynamic content works with many controller filter (metaslug_vars)" do
+    visit edit_post_path(posts(:phone))
+    assert_title "Edit Phone article"
+  end
+
+  test "doesn't interpolate when metas metaslug_vars are not set in the controller" do
+    visit category_path(categories(:phone))
+    assert_title "Category {{category.title}}"
+  end
 end

@@ -10,10 +10,10 @@ en:
     title: ""
   "/posts/:id/edit":
     description: ""
-    title: ""
+    title: "Edit {{post.title}}"
   "/posts/:id":
     description: ""
-    title: ""
+    title: "{{post.title}}"
   "/categories/:category_id/posts":
     description: ""
     title: ""
@@ -38,7 +38,7 @@ en:
     title: "Edit this category"
   "/categories/:id":
     description: ""
-    title: ""
+    title: "Category {{category.title}}"
   "/awesome-page":
     description: ""
     title: "Really awesome"

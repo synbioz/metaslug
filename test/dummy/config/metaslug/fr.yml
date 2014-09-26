@@ -10,7 +10,7 @@ fr:
     title: ""
   "/posts/:id":
     description: ""
-    title: ""
+    title: "{{post.title}}"
   "/categories/:category_id/posts":
     description: ""
     title: ""

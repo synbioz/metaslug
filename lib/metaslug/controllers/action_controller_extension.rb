@@ -16,7 +16,7 @@ module Metaslug
       end
 
       #
-      # A locale corresponds to a YAML file. We load each YAML file individually
+      # A locale corresponds to a YAML file. We load each YAML file individually
       # then merge then into a global hash.
       #
       # @return [Hash] [Global hash with all metas]
@@ -48,7 +48,6 @@ module Metaslug
       # @return [void]
       def set_metas_for_current_path
         locale_metas_storage.keys.each do |k|
-          # TODO: we may match many path, get the more accurate
           if request.path.match(translate_key_into_regexp(k))
             set_metas_from_hash(locale_metas_storage[k])
             return
@@ -65,10 +64,32 @@ module Metaslug
 
       #
       # Load metas into an instance variable to have access to them in the helper.
+      # Get the instance variables mark as accessible in the before_filter to interpolate
+      # values in the liquid template.
       # @param values [Hash] [Metas]
       #
       # @return [Hash] [Metas]
       def set_metas_from_hash(values)
+        @metaslug_vars ||= []
+        # For each meta we need to interpole the value if it use a dynamic content.
+        values.each do |k ,v|
+          # Looks like a liquid template
+          if v =~ /{{.*}}/
+            if @metaslug_vars.empty?
+              Rails.logger.debug "You provide a template but don't set access to your vars in the associated controller."
+              values[k] = v
+            else
+              template  = Liquid::Template.parse(v)
+              h = @metaslug_vars.inject({}) do |acc, v|
+                acc[v.to_s] = instance_variable_get("@#{v}")
+                acc
+              end
+              values[k] = template.render(h)
+            end
+          else
+            values[k] = v
+          end
+        end
         @metaslug = values
       end
 
@@ -119,7 +140,23 @@ module Metaslug
         %r{^#{k.gsub /\:\w+/, '\w+'}$}i
       end
 
-      before_filter :load_metas_for_current_slug
+      def self.metaslug_vars(*args)
+        before_filter args.extract_options! do
+          @metaslug_vars = args
+        end
+      end
+
+      #
+      # Overriding the default render method because we need to use the action
+      # variables to render the liquid template. This had to be done after the
+      # action and before the render.
+      # @param *args [Array] [Default arguments]
+      #
+      # @return [type] [description]
+      def render(*args)
+        load_metas_for_current_slug
+        super
+      end
     end
   end
 end

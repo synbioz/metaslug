@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyText
-  title: MyString
+phone:
+  content: "bla bla"
+  title: Phone article
   active: false
-  category_id: 
+  category: phone
 
-two:
-  content: MyText
-  title: MyString
+computer:
+  content: "bla bla"
+  title: Computer article
   active: false
-  category_id: 
+  category: computer

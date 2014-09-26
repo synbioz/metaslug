@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
 
   s.add_dependency "rails", ">= 4.0.0"
+  s.add_dependency "liquid"
 
   s.add_development_dependency "capybara"
   s.add_development_dependency "sqlite3"

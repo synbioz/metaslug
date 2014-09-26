@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  metaslug_vars :post, only: :show
+  metaslug_vars :post, only: :edit
 
   # GET /posts
   def index
