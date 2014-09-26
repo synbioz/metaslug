@@ -10,3 +10,5 @@ test/dummy/tmp/
 test/dummy/.sass-cache
 test/dummy/config/database.yml
 test/dummy/config/secrets.yml
+vendor/bundle
+Gemfile.lock
