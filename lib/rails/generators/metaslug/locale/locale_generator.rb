@@ -26,6 +26,9 @@ BANNER
 
         I18n.available_locales.each do |locale|
           buffer = "#{locale}:\n"
+          buffer << "  default:\n"
+          buffer << "    description: \"\"\n"
+          buffer << "    title: \"\"\n"
 
           routes.each do |route|
             buffer << "  \"#{route}\":\n"
