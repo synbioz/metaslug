@@ -139,8 +139,8 @@ module Metaslug
       #
       # @return [Regexp] [Builded regexp]
       def translate_key_into_regexp(k)
-        # replace :id with \:\w+
-        %r{^#{k.gsub /\:\w+/, '\w+'}$}i
+        # replace :id with regular expression
+        %r{^#{k.gsub /\:\w+/, '[a-z0-9_.-]+'}$}i
       end
 
       def self.metaslug_vars(*args)

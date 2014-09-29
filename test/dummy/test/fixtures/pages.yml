@@ -9,3 +9,10 @@ without_metas:
   name: "Without metas"
   content: This page should have default metas
   slug: without-metas
+
+another_page:
+  name: "Yet another page"
+  content: "Boring stuff"
+  title: "Yet another page"
+  description: "Don't tell them it's boring"
+  slug: "another-page"

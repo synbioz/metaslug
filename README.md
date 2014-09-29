@@ -7,7 +7,15 @@ Metaslug uses liquid to be able to add dynamic content in the metas.
 
 ## Starting
 
-First use the install generator:
+First add the `metaslug` helper in your layout then use the install generator:
+
+~~~
+doctype html
+html lang="fr"
+  head
+    meta charset="utf-8"
+    = metaslug
+~~~
 
 ~~~
 bundle exec rails generate metaslug:install

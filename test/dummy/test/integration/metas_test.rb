@@ -49,8 +49,8 @@ class MetasTest < ActionDispatch::IntegrationTest
   end
 
   test "use default metas if none match and default has been set" do
-    visit "/without-metas?locale=en"
-    assert_title "Default title"
+    visit "/without-metas?locale=de"
+    assert_title "Standardtitel"
   end
 
   test "title should be empty if none match and default has not been set" do
@@ -76,5 +76,10 @@ class MetasTest < ActionDispatch::IntegrationTest
   test "doesn't interpolate when metas metaslug_vars are not set in the controller" do
     visit category_path(categories(:phone))
     assert_title "Category {{category.title}}"
+  end
+
+  test "title for dynamic page with slug containing dash" do
+    visit "/another-page"
+    assert_title "Yet another page"
   end
 end

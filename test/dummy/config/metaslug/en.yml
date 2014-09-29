@@ -50,3 +50,7 @@ en:
       title: "Awesome page"
       locale:
         alternate: "fr_FR"
+  # catch all slug
+  "/:slug":
+    title: "{{page.title}}"
+    description: "{{page.description}}"
