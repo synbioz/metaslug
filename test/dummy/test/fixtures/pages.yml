@@ -16,3 +16,8 @@ another_page:
   title: "Yet another page"
   description: "Don't tell them it's boring"
   slug: "another-page"
+
+twitter:
+  name: "Twitter page"
+  content: Twitter informations
+  slug: twitter

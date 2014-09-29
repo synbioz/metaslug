@@ -43,6 +43,11 @@ en:
   "/categories/:id":
     description: ""
     title: "Category {{category.title}}"
+  "/twitter":
+    title: "Twitter"
+    twitter:
+      title: "Twitter title"
+      url: "Twitter url"
   "/awesome-page":
     description: ""
     title: "Really awesome"

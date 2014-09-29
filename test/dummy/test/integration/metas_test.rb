@@ -82,4 +82,10 @@ class MetasTest < ActionDispatch::IntegrationTest
     visit "/another-page"
     assert_title "Yet another page"
   end
+
+  test "twitter metas are all presents" do
+    visit "/twitter?locale=en"
+    assert_selector("meta[property='twitter:title'][content='Twitter title']", visible: false)
+    assert_selector("meta[property='twitter:url'][content='Twitter url']", visible: false)
+  end
 end
