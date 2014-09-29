@@ -63,6 +63,11 @@ class MetasTest < ActionDispatch::IntegrationTest
     assert_title "Phone article"
   end
 
+  test "dynamic og title should be set" do
+    visit post_path(posts(:phone))
+    assert_selector("meta[property='og:title'][content='Phone article']", visible: false)
+  end
+
   test "dynamic content works with many controller filter (metaslug_vars)" do
     visit edit_post_path(posts(:phone))
     assert_title "Edit Phone article"

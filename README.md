@@ -99,7 +99,6 @@ We need to access the vars setted after action and interpolate them before rende
 
 This is what we planned to add next:
 
-- Manage more complicated metas (opengraph…)
 - Different storage (database, cache…)
 - Web interface to edit metas from the app
 - Remove rails dependency

@@ -73,21 +73,24 @@ module Metaslug
         @metaslug_vars ||= []
         # For each meta we need to interpole the value if it use a dynamic content.
         values.each do |k ,v|
-          # Looks like a liquid template
-          if v =~ /{{.*}}/
-            if @metaslug_vars.empty?
-              Rails.logger.debug "You provide a template but don't set access to your vars in the associated controller."
-              values[k] = v
-            else
-              template  = Liquid::Template.parse(v)
-              h = @metaslug_vars.inject({}) do |acc, v|
-                acc[v.to_s] = instance_variable_get("@#{v}")
-                acc
-              end
-              values[k] = template.render(h)
-            end
+          if v.is_a?(Hash)
+            # recursive call for nested hash like { 'og' => { 'locale' => { 'alternate' => 'fr_FR' } } }
+            set_metas_from_hash(v)
           else
-            values[k] = v
+            # Looks like a liquid template
+            if v =~ /{{.*}}/
+              if @metaslug_vars.empty?
+                Rails.logger.debug "You provide a template but don't set access to your vars in the associated controller."
+                values[k] = v
+              else
+                template  = Liquid::Template.parse(v)
+                h = @metaslug_vars.inject({}) do |acc, v|
+                  acc[v.to_s] = instance_variable_get("@#{v}")
+                  acc
+                end
+                values[k] = template.render(h)
+              end
+            end
           end
         end
         @metaslug = values

@@ -1,0 +1,2 @@
+module MetaslugHelper
+end

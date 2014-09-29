@@ -14,6 +14,8 @@ en:
   "/posts/:id":
     description: ""
     title: "{{post.title}}"
+    og:
+      title: "{{post.title}}"
   "/categories/:category_id/posts":
     description: ""
     title: ""
@@ -36,9 +38,15 @@ en:
   "/categories/:id/edit":
     description: ""
     title: "Edit this category"
+    og:
+      title: "Edit {{post.title}}"
   "/categories/:id":
     description: ""
     title: "Category {{category.title}}"
   "/awesome-page":
     description: ""
     title: "Really awesome"
+    og:
+      title: "Awesome page"
+      locale:
+        alternate: "fr_FR"
