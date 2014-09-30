@@ -46,10 +46,10 @@ en:
 This generator takes options. For example:
 
 ~~~
-bundle exec rails g metaslug:locale -l eueui -o -m description,keywords,title
+bundle exec rails g metaslug:locale -l de -o -m description,keywords,title
 ~~~
 
-will take generate a file for de locale. `-o` specifies to only print content on the console while `-m` takes your metas (defaults are title and description).
+will generate a file for de locale. `-o` specifies to only print content on the console while `-m` takes your metas (defaults are title and description).
 
 On development mode, translations are reloaded for each request, not in the other environments.
 
