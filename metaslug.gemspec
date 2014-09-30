@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files`.split("\n")
   s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
 
-  s.add_dependency "rails", ">= 4.0.0"
+  s.add_dependency "rails", "~> 4.0"
   s.add_dependency "liquid"
 
   s.add_development_dependency "capybara"

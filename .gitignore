@@ -12,3 +12,4 @@ test/dummy/config/database.yml
 test/dummy/config/secrets.yml
 vendor/bundle
 Gemfile.lock
+*.gem
