@@ -6,8 +6,7 @@ module Metaslug
           acc << content_tag(:title, @metaslug['title'])
         elsif v.is_a?(Hash)
           # more complicated metas, like property
-          key, value = separate_keys_and_value(k, v)
-          acc << content_tag(:meta, nil, { property: key, content: get_deep_value(@metaslug, key) })
+          set_metas_from_hash(v, k, acc)
         else
           acc << content_tag(:meta, nil, { name: k.to_s, content: @metaslug[k.to_s] })
         end
@@ -16,44 +15,35 @@ module Metaslug
     end
 
     private
-
       #
-      # Serialize nested hash keys.
-      # Ex: { 'og' => { 'locale' => { 'alternate' => 'fr_FR' } } }
-      # will result in 'og:locale:alternate'
-      # Return a with the serialized key and the value
+      # Recursive function to build metas and add them to the accumulator.
+      # @param hash [Hash] [Hash of the metas]
+      # @param key [String] [Key of the parent hash]
+      # @param acc [Array] [Metas accumulator]
+      # @param separator = ':' [String] [Separator used when building key, ex: og:title]
       #
-      # @param k [Symbol] [Key]
-      # @param v [String] [Value]
-      #
-      # @return [Array] [Serialized keys joined with ':' and value]
-      def separate_keys_and_value(k, v)
-        key = "#{k}"
-        while(v.is_a?(Hash))
-          s, v = v.flatten
-          key << ":#{s}"
+      # @return [type] [description]
+      def set_metas_from_hash(hash, key, acc, separator = ':')
+        hash.each do |k, v|
+          if v.is_a?(Hash)
+            _k = build_meta_name(key, k, separator)
+            set_metas_from_hash(v, _k, acc)
+          else
+            _k = build_meta_name(key, k, separator)
+            acc << content_tag(:meta, nil, { property: _k, content: v })
+          end
         end
-        [key, v]
       end
 
       #
-      # Get value of nested hash, ex: { a: { b: 'c' } }
-      # @param hash [Hash] [Original hash]
-      # @param str [Key] [Key we want to reach, ex: 'a:b']
-      # @param separator = ':' [String] [Key separator]
+      # Construct meta name based on the previous keys
+      # @param base_key [String] [Key of the parent hash, ex: og]
+      # @param key [String] [Key of the actual hash, ex: title]
+      # @param separator = ':' [String] [Separator used when building key, ex: og:title]
       #
-      # @return [String] [Value]
-      def get_deep_value(hash, str, separator = ':')
-        return nil unless hash.is_a?(Hash)
-        keys = str.split(separator)
-        keys.each do |k|
-          if hash.has_key?(k)
-            hash = hash[k]
-            return hash unless hash.is_a?(Hash)
-          else
-            return nil
-          end
-        end
+      # @return [type] [description]
+      def build_meta_name(base_key, key, separator = ':')
+        base_key.present? ? "#{base_key}#{separator}#{key}" : key
       end
   end
 end
