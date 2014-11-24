@@ -49,14 +49,14 @@ module Metaslug
       def set_metas_for_current_path
         locale_metas_storage.keys.each do |k|
           if request.path.match(translate_key_into_regexp(k))
-            set_metas_from_hash(locale_metas_storage[k])
+            set_metas_from_hash(locale_metas_storage[k].dup)
             return
           end
         end
 
         # if no key match the current path, load default metas if present.
         if locale_metas_storage.has_key?('default')
-          set_metas_from_hash(locale_metas_storage['default'])
+          set_metas_from_hash(locale_metas_storage['default'].dup)
         else
           set_metas_from_hash({})
         end

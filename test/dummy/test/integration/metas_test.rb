@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class MetasTest < ActionDispatch::IntegrationTest
+  include Metaslug::ActionControllerExtension
   fixtures :all
 
   test "title when visiting categories path with en locale" do
@@ -87,5 +88,14 @@ class MetasTest < ActionDispatch::IntegrationTest
     visit "/twitter?locale=en"
     assert_selector("meta[property='twitter:title'][content='Twitter title']", visible: false)
     assert_selector("meta[property='twitter:url'][content='Twitter url']", visible: false)
+  end
+
+  test "visit a page with metas interpolation should not modify the loaded YAML" do
+    visit post_path(posts(:phone), locale: :en)
+    # title must be evaluated
+    assert_title "Phone article"
+
+    # stored value must no be evaluated, it should still be the liquid template
+    assert_equal("{{post.title}}", metas_storage["en"]["/posts/:id"]["title"])
   end
 end
