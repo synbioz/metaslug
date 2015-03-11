@@ -8,7 +8,7 @@ module Metaslug
           # more complicated metas, like property
           set_metas_from_hash(v, k, acc)
         else
-          acc << content_tag(:meta, nil, { name: k.to_s, content: @metaslug[k.to_s] })
+          acc << tag(:meta, { name: k.to_s, content: @metaslug[k.to_s] }, true )
         end
         acc
       end.join.html_safe
@@ -30,7 +30,7 @@ module Metaslug
             set_metas_from_hash(v, _k, acc)
           else
             _k = build_meta_name(key, k, separator)
-            acc << content_tag(:meta, nil, { property: _k, content: v })
+            acc << tag(:meta, { property: _k, content: v }, true)
           end
         end
       end
